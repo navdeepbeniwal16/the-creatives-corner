@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="TWC:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>TWC</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="TWC-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="TWC:war exploded" />
+    </root>
+  </artifact>
+</component>
