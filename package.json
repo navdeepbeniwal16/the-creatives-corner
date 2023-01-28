@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "name": "the-creatives-corner",
+  "version": "1.0.0",
+  "description": "A social media and collaboration platform for creative writers.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/navdeepbeniwal16/the-creatives-corner.git"
+  },
+  "keywords": [
+    "social-media",
+    "writer",
+    "platform",
+    "saas"
+  ],
+  "author": "Navdeep Beniwal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/navdeepbeniwal16/the-creatives-corner/issues"
+  },
+  "homepage": "https://github.com/navdeepbeniwal16/the-creatives-corner#readme"
+}
