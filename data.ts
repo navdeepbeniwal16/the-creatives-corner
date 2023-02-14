@@ -1,6 +1,7 @@
 // TODO: Add email/username to the data as well to the processing code
+import { Writer } from "./writers";
 
-export const writers: any[] = [
+export const writers: Writer[] = [
     {
         id: 1,
         name: 'Margaret Atwood',
@@ -43,6 +44,10 @@ export const writers: any[] = [
     }
 ];
 
+export const generateNewId = (collection: any[]) => {
+    return collection.length + 1;
+}
+
 export const findById = (id: number, collection: any[]) => {
     const objectIndex = collection.findIndex(obj => obj.id === id)
     if (objectIndex !== -1) {
@@ -69,10 +74,3 @@ export const deleteById = (id: number, collection: any[]) => {
         throw new Error(`Object with id : ${id} not found.`);
     }
 }
-
-// module.exports = {
-//     writers : writers,
-//     findById : findById,
-//     updateById : updateById,
-//     deleteById : deleteById
-// }
