@@ -1,8 +1,19 @@
 import express, { Request, Response, NextFunction, Router } from 'express';
 import { writers, generateNewId, findById, updateById, deleteById, } from './data';
 import { createWriter, Writer } from './writers';
+import { connectionsRouter } from './connections-router';
 
 const router: Router = express.Router();
+
+router.use('/:id/connections', (req: Request, res: Response, next: NextFunction) => {
+    const writerId: number = Number(req.params.id);
+
+    if (!Number.isInteger(writerId)) { // typecheck : writerId passed in the path is not a number // TODO: Can probably shift this logic in a separate component
+        return res.status(400).json({ message: 'Invalid writer id.' });
+    }
+    req.body.writerId = writerId;
+    next();
+}, connectionsRouter);
 
 router.get('/', (req: Request, res: Response, next: NextFunction) => {
     // TODO: Include search criteria based filtering
