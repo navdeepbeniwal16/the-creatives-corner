@@ -1,9 +1,10 @@
 // TODO: Add email/username to the data as well to the processing code
 import { Connection } from "./models/connection";
-import { Writer } from "./writers";
+import { Writer } from "./models/writers";
 
 // TODO: Refactor component to use connection to a database rather than reading data from JSON files.
 import * as fs from "fs";
+import { v4 as uuidv4 } from 'uuid';
 
 const writersData = fs.readFileSync('./data-files/writers.json');
 const writersJsonDataArray = JSON.parse(writersData.toString());
@@ -12,7 +13,7 @@ const readWritersFromJsonArray = (writerJsonArray: any[]) => {
     const writers: Writer[] = [];
     writerJsonArray.forEach(object => {
         const writer: Writer = {
-            id: object.id,
+            id: uuidv4(),
             name: object.name,
             email: object.email,
             nationalities: object.nationalities,
@@ -26,7 +27,6 @@ const readWritersFromJsonArray = (writerJsonArray: any[]) => {
 }
 
 export const writers: Writer[] = readWritersFromJsonArray(writersJsonDataArray);
-console.log('Total writers : ' + writers.length);
 
 const connectionsData = fs.readFileSync('./data-files/connections.json');
 const connectionsJsonDataArray = JSON.parse(connectionsData.toString());
@@ -35,6 +35,7 @@ const readConnectionFromJsonArray = (connectionsJsonArray: any[]) => {
     const connections: Connection[] = [];
     connectionsJsonArray.forEach(object => {
         const connection: Connection = {
+            id: uuidv4(),
             dateCreated: object.dateCreated,
             sourceUserId: object.sourceUserId,
             targetUserId: object.targetUserId,
@@ -47,14 +48,13 @@ const readConnectionFromJsonArray = (connectionsJsonArray: any[]) => {
 }
 
 export const connections: Connection[] = readConnectionFromJsonArray(connectionsJsonDataArray);
-console.log('Total connections : ' + connections.length);
 
 
 export const generateNewId = (collection: any[]) => {
     return collection.length + 1;
 }
 
-export const findById = (id: number, collection: any[]) => {
+export const findById = (id: string, collection: any[]) => {
     const objectIndex = collection.findIndex(obj => obj.id === id)
     if (objectIndex !== -1) {
         return collection[objectIndex];
@@ -64,7 +64,7 @@ export const findById = (id: number, collection: any[]) => {
 }
 
 
-export const updateById = (id: number, object: any, collection: any[]) => {
+export const updateById = (id: string, object: any, collection: any[]) => {
     const objectIndex = collection.findIndex(object => object['id'] === id);
     if (objectIndex !== -1) {
         collection[objectIndex] = object;
@@ -73,7 +73,7 @@ export const updateById = (id: number, object: any, collection: any[]) => {
     }
 }
 
-export const deleteById = (id: number, collection: any[]) => {
+export const deleteById = (id: string, collection: any[]) => {
     const objectIndex = collection.findIndex(object => object.id === id);
     if (objectIndex !== -1) {
         collection.splice(objectIndex, 1);
