@@ -1,0 +1,62 @@
+[
+    {
+        "dateCreated": "2022-12-25T12:00:00.000Z",
+        "sourceUserId": 1,
+        "targetUserId": 2,
+        "status": "Pending"
+    },
+    {
+        "dateCreated": "2022-12-25T12:00:00.000Z",
+        "sourceUserId": 1,
+        "targetUserId": 3,
+        "status": "Accepted"
+    },
+    {
+        "dateCreated": "2022-12-25T12:00:00.000Z",
+        "sourceUserId": 1,
+        "targetUserId": 4,
+        "status": "Rejected"
+    },
+    {
+        "dateCreated": "2022-12-25T12:00:00.000Z",
+        "sourceUserId": 1,
+        "targetUserId": 5,
+        "status": "Blocked"
+    },
+    {
+        "dateCreated": "2022-12-25T12:00:00.000Z",
+        "sourceUserId": 2,
+        "targetUserId": 1,
+        "status": "Canceled"
+    },
+    {
+        "dateCreated": "2022-12-25T12:00:00.000Z",
+        "sourceUserId": 2,
+        "targetUserId": 3,
+        "status": "Accepted"
+    },
+    {
+        "dateCreated": "2022-12-25T12:00:00.000Z",
+        "sourceUserId": 2,
+        "targetUserId": 4,
+        "status": "Pending"
+    },
+    {
+        "dateCreated": "2022-12-25T12:00:00.000Z",
+        "sourceUserId": 2,
+        "targetUserId": 5,
+        "status": "Accepted"
+    },
+    {
+        "dateCreated": "2022-12-25T12:00:00.000Z",
+        "sourceUserId": 3,
+        "targetUserId": 1,
+        "status": "Pending"
+    },
+    {
+        "dateCreated": "2022-12-25T12:00:00.000Z",
+        "sourceUserId": 4,
+        "targetUserId": 3,
+        "status": "Accepted"
+    }
+]

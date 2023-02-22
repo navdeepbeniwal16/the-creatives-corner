@@ -1,5 +1,7 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export interface Writer {
-    id: number,
+    id: string,
     name: string,
     email: string,
     nationalities?: string[],
@@ -7,11 +9,7 @@ export interface Writer {
     bio?: string
 }
 
-export const createWriter = (body: any): Writer => {
-    if (!body.hasOwnProperty('id')) {
-        throw new Error('Writer is missing \'id\'');
-    }
-
+export const createWriter = (body: any, id?: string): Writer => {
     if (!body.hasOwnProperty('name')) {
         throw new Error('Writer is missing \'name\'');
     }
@@ -21,7 +19,7 @@ export const createWriter = (body: any): Writer => {
     }
 
     const writer: Writer = {
-        id: body.id,
+        id: id || uuidv4(),
         name: body.name,
         email: body.email,
         nationalities: body.nationalities || [],
