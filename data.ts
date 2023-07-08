@@ -64,6 +64,15 @@ export const findById = (id: string, collection: any[]) => {
     }
 }
 
+export const find = (collection: any[], predicate: (element: any) => boolean) => {
+    const objectIndex = collection.findIndex(object => predicate(object));
+    if (objectIndex !== -1) {
+        return collection[objectIndex];
+    } else {
+        return null;
+    }
+}
+
 
 export const updateById = (id: string, object: any, collection: any[]) => {
     const objectIndex = collection.findIndex(object => object['id'] === id);

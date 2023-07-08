@@ -3,10 +3,12 @@ import bodyParser from 'body-parser';
 import { writersRouter } from './controllers/writers-router.js';
 import { connectionsRouter } from './controllers/connections-router';
 import morgan from 'morgan';
+import dotenv from 'dotenv';
 
 const app: Express = express();
 app.use(bodyParser.json());
 app.use(morgan('dev'));
+dotenv.config();
 
 const PORT = 3000;
 
