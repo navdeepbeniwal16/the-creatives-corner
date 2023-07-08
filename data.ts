@@ -16,6 +16,7 @@ const readWritersFromJsonArray = (writerJsonArray: any[]) => {
             id: uuidv4(),
             name: object.name,
             email: object.email,
+            password: object.password,
             nationalities: object.nationalities,
             bio: object.bio,
             genres: object.genres
@@ -56,6 +57,15 @@ export const generateNewId = (collection: any[]) => {
 
 export const findById = (id: string, collection: any[]) => {
     const objectIndex = collection.findIndex(obj => obj.id === id)
+    if (objectIndex !== -1) {
+        return collection[objectIndex];
+    } else {
+        return null;
+    }
+}
+
+export const find = (collection: any[], predicate: (element: any) => boolean) => {
+    const objectIndex = collection.findIndex(object => predicate(object));
     if (objectIndex !== -1) {
         return collection[objectIndex];
     } else {
