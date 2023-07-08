@@ -4,6 +4,7 @@ export interface Writer {
     id: string,
     name: string,
     email: string,
+    password: string,
     nationalities?: string[],
     genres?: string[],
     bio?: string
@@ -18,11 +19,16 @@ export const createWriter = (body: any): Writer => {
         throw new Error('Writer is missing \'email\'');
     }
 
+    if (!body.hasOwnProperty('hashedPassword')) {
+        throw new Error('Writer is missing \'hashedPassword\'');
+    }
+
     const writer: Writer = {
         // id: id || uuidv4(),
         id: uuidv4(),
         name: body.name,
         email: body.email,
+        password: body.hashedPassword,
         nationalities: body.nationalities || [],
         bio: body.bio || null,
         genres: body.genres || []

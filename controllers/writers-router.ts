@@ -32,10 +32,19 @@ router.get('/:writerId', (req: Request, res: Response) => {
 })
 
 // api to create a new writer
-router.post('/', (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response) => {
     const writerBody = req.body;
 
     try {
+        // hashing password and storing hashed password to the body
+        if (!req.body.hasOwnProperty('password') || !req.body['password']) {
+            throw new Error('Writer is missing \'password\'');
+        }
+
+        const password = req.body.password;
+        const hashedPassword = await bcrypt.hash(password, 10);
+        writerBody.hashedPassword = hashedPassword;
+
         const writerToCreate: Writer = createWriter(writerBody);
         const writerIndex = writers.findIndex(writerObject => writerObject.email === writerToCreate.email);
         if (writerIndex !== -1) {

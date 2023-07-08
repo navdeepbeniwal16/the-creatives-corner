@@ -16,6 +16,7 @@ const readWritersFromJsonArray = (writerJsonArray: any[]) => {
             id: uuidv4(),
             name: object.name,
             email: object.email,
+            password: object.password,
             nationalities: object.nationalities,
             bio: object.bio,
             genres: object.genres
