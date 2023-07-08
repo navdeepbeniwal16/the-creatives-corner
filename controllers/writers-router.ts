@@ -1,8 +1,10 @@
 import express, { Request, Response, NextFunction, Router } from 'express';
 import { writers, findById, updateById, deleteById, } from '../data';
-import { createWriter, Writer } from '../models/writers';
+import { createWriter, updateWriter, Writer } from '../models/writers';
 
 const router: Router = express.Router();
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 router.param('writerId', (req, res, next, id) => {
     const writer: Writer = findById(id, writers);
@@ -29,6 +31,7 @@ router.get('/:writerId', (req: Request, res: Response) => {
     res.json(req.body.writer);
 })
 
+// api to create a new writer
 router.post('/', (req: Request, res: Response) => {
     const writerBody = req.body;
 
@@ -46,11 +49,11 @@ router.post('/', (req: Request, res: Response) => {
 })
 
 router.put('/:writerId', (req: Request, res: Response) => {
-    const writerId = req.params.id;
+    const writerId = req.params.writerId;
     const updatedWriterBody = req.body;
-
+    const writer: Writer = req.body.writer;
     try {
-        const updatedWriter = createWriter(updatedWriterBody, writerId);
+        const updatedWriter = updateWriter(writer, updatedWriterBody);
         updateById(writerId, updatedWriter, writers);
     } catch (error: any) {
         res.status(400).json({ message: error.message });

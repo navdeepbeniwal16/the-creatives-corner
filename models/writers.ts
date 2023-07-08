@@ -9,7 +9,7 @@ export interface Writer {
     bio?: string
 }
 
-export const createWriter = (body: any, id?: string): Writer => {
+export const createWriter = (body: any): Writer => {
     if (!body.hasOwnProperty('name')) {
         throw new Error('Writer is missing \'name\'');
     }
@@ -19,7 +19,8 @@ export const createWriter = (body: any, id?: string): Writer => {
     }
 
     const writer: Writer = {
-        id: id || uuidv4(),
+        // id: id || uuidv4(),
+        id: uuidv4(),
         name: body.name,
         email: body.email,
         nationalities: body.nationalities || [],
@@ -28,4 +29,28 @@ export const createWriter = (body: any, id?: string): Writer => {
     };
 
     return writer;
-} 
+}
+
+export const updateWriter = (writer: Writer, updatedWriterBody: any): Writer => {
+    if (updatedWriterBody.hasOwnProperty('name') && updatedWriterBody['name']) {
+        writer.name = updatedWriterBody['name'];
+    }
+
+    if (updatedWriterBody.hasOwnProperty('email') && updatedWriterBody['email']) {
+        writer.email = updatedWriterBody['email'];
+    }
+
+    if (updatedWriterBody.hasOwnProperty('nationalities')) {
+        writer.nationalities = updatedWriterBody['nationalities'];
+    }
+
+    if (updatedWriterBody.hasOwnProperty('bio')) {
+        writer.bio = updatedWriterBody['bio'];
+    }
+
+    if (updatedWriterBody.hasOwnProperty('genres')) {
+        writer.genres = updatedWriterBody['genres'];
+    }
+
+    return writer;
+}
